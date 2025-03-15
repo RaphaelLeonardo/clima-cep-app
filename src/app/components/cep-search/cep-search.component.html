@@ -1,31 +1,68 @@
 <div class="cep-search-container">
   <mat-card>
     <div class="card-header">
-      <div class="icon-container">
-        <span class="material-icons-outlined location-icon">location_on</span>
-      </div>
-      <h2>Consulta de endereço</h2>
+      <h2>Endereço</h2>
     </div>
     
     <mat-card-content>
-      <p class="card-description">Digite um CEP para consultar o endereço</p>
-      
       <form [formGroup]="cepForm" (ngSubmit)="onSubmit()">
-        <mat-form-field appearance="outline" class="cep-input">
-          <mat-label>CEP</mat-label>
-          <input 
-            matInput 
-            formControlName="cep" 
-            placeholder="00000-000"
-            (input)="formatCep($event)"
-            maxlength="9">
-          <mat-error *ngIf="cepForm.get('cep')?.hasError('required')">
-            CEP é obrigatório
-          </mat-error>
-          <mat-error *ngIf="cepForm.get('cep')?.hasError('minlength')">
-            CEP deve ter no mínimo 8 caracteres
-          </mat-error>
-        </mat-form-field>
+        <div class="form-row">
+          <div class="label-container">
+            <label>CEP:</label>
+          </div>
+          <mat-form-field appearance="outline" class="cep-input">
+            <input 
+              matInput 
+              formControlName="cep" 
+              placeholder="00000-000"
+              (input)="formatCep($event)"
+              maxlength="9">
+            <mat-error *ngIf="cepForm.get('cep')?.hasError('required')">
+              CEP é obrigatório
+            </mat-error>
+            <mat-error *ngIf="cepForm.get('cep')?.hasError('minlength')">
+              CEP deve ter no mínimo 8 caracteres
+            </mat-error>
+          </mat-form-field>
+        </div>
+        
+        <div *ngIf="addressData" class="address-details">
+          <div class="form-row">
+            <div class="label-container">
+              <label>Endereço:</label>
+            </div>
+            <div class="value-container">
+              <span>{{addressData.logradouro}}</span>
+            </div>
+          </div>
+          
+          <div class="form-row">
+            <div class="label-container">
+              <label>Bairro:</label>
+            </div>
+            <div class="value-container">
+              <span>{{addressData.bairro}}</span>
+            </div>
+          </div>
+          
+          <div class="form-row">
+            <div class="label-container">
+              <label>Cidade:</label>
+            </div>
+            <div class="value-container">
+              <span>{{addressData.localidade}}</span>
+            </div>
+          </div>
+          
+          <div class="form-row">
+            <div class="label-container">
+              <label>Estado:</label>
+            </div>
+            <div class="value-container">
+              <span>{{addressData.uf}}</span>
+            </div>
+          </div>
+        </div>
         
         <div class="button-container">
           <button 
@@ -34,8 +71,7 @@
             type="submit"
             [disabled]="cepForm.invalid || loading"
             class="submit-button">
-            <span class="material-icons-outlined">search</span>
-            Buscar
+            Processar
           </button>
         </div>
       </form>

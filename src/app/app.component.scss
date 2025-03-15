@@ -6,37 +6,26 @@
 }
 
 header {
-  padding: 40px 20px;
+  padding: 20px;
   text-align: center;
   
   h1 {
     margin: 0;
-    font-size: 2.5rem;
-    font-weight: 700;
-    color: var(--primary-color);
-  }
-  
-  p {
-    margin: 10px 0 0;
-    font-size: 1.1rem;
+    font-size: 2rem;
+    font-weight: 600;
     color: var(--secondary-color);
-    font-weight: 500;
   }
 }
 
 main {
   flex: 1;
   padding: 0 20px 40px;
-  max-width: 1200px;
+  max-width: 1400px;
   margin: 0 auto;
   width: 100%;
-  display: grid;
-  grid-template-columns: 1fr;
+  display: flex;
+  flex-direction: column;
   gap: 30px;
-  
-  @media (min-width: 768px) {
-    grid-template-columns: 1fr 1fr;
-  }
 }
 
 footer {
