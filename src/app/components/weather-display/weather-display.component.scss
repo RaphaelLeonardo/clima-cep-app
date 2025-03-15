@@ -48,7 +48,7 @@ mat-card-content {
 }
 
 .main-weather-img {
-  width: 40%;
+  width: 22%;
   border-radius: 20px;
   display: block;
   height: 150px;
@@ -109,20 +109,43 @@ mat-card-content {
   }
 }
 
+.forecast-container {
+  margin-top: 20px;
+  position: relative;
+  z-index: 2;
+}
+
+.day-labels {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 10px;
+  margin-bottom: 5px;
+  
+  .day-label {
+    text-align: center;
+    
+    p {
+      margin: 0;
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: var(--text-primary);
+    }
+  }
+}
+
 .forecast-days {
   display: grid;
   grid-template-columns: repeat(6, 1fr);
   gap: 10px;
   overflow-x: auto;
   padding-bottom: 10px;
-  margin-top: 20px;
   position: relative;
   z-index: 2;
   
   .forecast-day {
     color: white;
     min-width: 70px;
-    min-height: 150px;
+    min-height: 120px;
     text-align: center;
     position: relative;
     border-radius: 10px;
@@ -133,7 +156,7 @@ mat-card-content {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    padding: 0;
+    padding: 10px 5px;
     
     &::before {
       content: '';
@@ -142,30 +165,29 @@ mat-card-content {
       left: 0;
       width: 100%;
       height: 100%;
-      background: rgba(0, 0, 0, 0.2);
       border-radius: 10px;
       z-index: 0;
     }
     
-    .day {
-      margin: 10px 0 5px;
-      font-size: 0.8rem;
-      font-weight: 500;
+    .forecast-top {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 5px;
       position: relative;
       z-index: 1;
-      padding: 0 5px;
     }
     
     .forecast-icon {
-      width: 40px;
-      height: 40px;
-      margin: 5px auto;
+      width: 60px;
+      height: 60px;
+      margin-left: 50px;
+      margin-top: -17px;
       position: relative;
       z-index: 1;
       
       &.sunny {
-        margin-top: 8px;
-        margin-bottom: 8px;
+        margin-top: 2px;
       }
       
       img {
@@ -176,9 +198,17 @@ mat-card-content {
     }
     
     .forecast-temp {
-      margin: 5px 0 10px;
+      margin: 0;
       font-size: 1.3rem;
       font-weight: 600;
+      position: relative;
+      z-index: 1;
+    }
+    
+    .forecast-city {
+      margin: 5px 0;
+      font-size: 0.7rem;
+      font-weight: 400;
       position: relative;
       z-index: 1;
     }

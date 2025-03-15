@@ -3,8 +3,15 @@ export interface WeatherResponse {
   main: Main;
   wind: Wind;
   name: string;
+  sys: Sys;
   cod: number;
   message?: string;
+}
+
+interface Sys {
+  country: string;
+  sunrise: number;
+  sunset: number;
 }
 
 interface Weather {

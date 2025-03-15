@@ -31,19 +31,28 @@
               </div>
             </div>
             <div class="location-info">
-              <p>{{weatherData.name}}, Brasil</p>
+              <p>{{weatherData.name}}, {{weatherData.sys?.country || 'BR'}}</p>
               <p class="weather-type">{{getWeatherDescription(weatherData)}}</p>
             </div>
           </div>
         </div>
         
-        <div class="forecast-days">
-          <div class="forecast-day" *ngFor="let day of forecastDays; let i = index" [style.background-image]="'url(assets/images/placeholder-tempo-diario.png)'">
-            <p class="day">{{formatDate(day.date)}}</p>
-            <div class="forecast-icon" [ngClass]="{'sunny': i === 1}">
-              <img [src]="getWeatherImage(i)" [alt]="'Previsão dia ' + (i+1)">
+        <div class="forecast-container">
+          <div class="day-labels">
+            <div class="day-label" *ngFor="let day of forecastDays; let i = index">
+              <p>{{formatDate(day.date)}}</p>
             </div>
-            <p class="forecast-temp">{{day.temp}}°</p>
+          </div>
+          <div class="forecast-days">
+            <div class="forecast-day" *ngFor="let day of forecastDays; let i = index" [style.background-image]="'url(assets/images/placeholder-tempo-diario.png)'">
+              <div class="forecast-top">
+                <p class="forecast-temp">{{day.temp}}°</p>
+                <div class="forecast-icon" [ngClass]="{'sunny': i === 1}">
+                  <img [src]="getWeatherImage(i)" [alt]="'Previsão dia ' + (i+1)">
+                </div>
+              </div>
+              <p class="forecast-city">{{weatherData?.name || 'São Paulo'}}, {{weatherData?.sys?.country || 'BR'}}</p>
+            </div>
           </div>
         </div>
       </div>
