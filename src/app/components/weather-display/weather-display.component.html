@@ -51,7 +51,7 @@
                   <img [src]="getWeatherImage(i)" [alt]="'Previsão dia ' + (i+1)">
                 </div>
               </div>
-              <p class="forecast-city">{{weatherData.name || 'São Paulo'}}, {{weatherData.sys.country || 'BR'}}</p>
+              <p class="forecast-city">{{weatherData.name}}, {{weatherData.sys.country}}</p>
             </div>
           </div>
         </div>
