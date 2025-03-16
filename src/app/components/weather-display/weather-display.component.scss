@@ -161,7 +161,7 @@ mat-card-content {
     position: relative;
     border-radius: 10px;
     background-size: contain;
-    background-position: center;
+    background-position: top left;
     background-repeat: no-repeat;
     overflow: hidden;
     display: flex;
@@ -182,8 +182,8 @@ mat-card-content {
     
     .forecast-top {
       display: flex;
-      align-items: center;
-      justify-content: center;
+      align-items: flex-start;
+      justify-content: flex-start;
       margin-top: 5px;
       position: relative;
       z-index: 1;
@@ -192,14 +192,11 @@ mat-card-content {
     .forecast-icon {
       width: 60px;
       height: 60px;
-      margin-left: 50px;
-      margin-top: -17px;
+      margin-left: 70px;
+      margin-top: -16px;
       position: relative;
       z-index: 1;
       
-      &.sunny {
-        margin-top: 2px;
-      }
       
       img {
         width: 100%;
@@ -222,6 +219,8 @@ mat-card-content {
       font-weight: 400;
       position: relative;
       z-index: 1;
+      text-align: left;
+      padding-right: 5px;
     }
   }
 }
