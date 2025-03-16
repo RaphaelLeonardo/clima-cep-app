@@ -1,11 +1,10 @@
 <div class="app-container">
   <header>
-    <h1>{{ title }}</h1>
-    <p>Consulte o endereço e a previsão do tempo pelo CEP</p>
+    <h1>Seletiva Front-End [New Arrays]</h1>
   </header>
   
   <main>
-    <app-cep-search (addressFound)="onAddressFound($event)"></app-cep-search>
+    <app-cep-search [addressData]="addressData" (addressFound)="onAddressFound($event)"></app-cep-search>
     <app-weather-display [addressData]="addressData"></app-weather-display>
   </main>
   

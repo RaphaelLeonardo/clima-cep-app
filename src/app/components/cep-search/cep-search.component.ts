@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
@@ -29,6 +29,7 @@ import { CepResponse } from '../../models/cep-response';
 })
 export class CepSearchComponent {
   @Output() addressFound = new EventEmitter<CepResponse>();
+  @Input() addressData: CepResponse | null = null;
   
   cepForm: FormGroup;
   loading = false;
@@ -62,6 +63,7 @@ export class CepSearchComponent {
           return;
         }
         
+        this.addressData = response;
         this.addressFound.emit(response);
       },
       error: () => {

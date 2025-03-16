@@ -1,126 +1,61 @@
-<div class="weather-display-container">
-  
-  <!-- Exibição do Endereço -->
-  <div *ngIf="addressData && !addressData.erro" class="results-container">
-    <mat-card class="address-card">
-      <div class="card-header">
-        <div class="icon-container">
-          <span class="material-icons-outlined">home</span>
-        </div>
-        <h2>Endereço</h2>
-      </div>
-      
-      <mat-card-content>
-        <div class="address-details">
-          <div class="address-row">
-            <span class="address-label">Logradouro:</span>
-            <span class="address-value">{{addressData.logradouro}}</span>
-          </div>
-          
-          <div *ngIf="addressData.complemento" class="address-row">
-            <span class="address-label">Complemento:</span>
-            <span class="address-value">{{addressData.complemento}}</span>
-          </div>
-          
-          <div class="address-row">
-            <span class="address-label">Bairro:</span>
-            <span class="address-value">{{addressData.bairro}}</span>
-          </div>
-          
-          <div class="address-row">
-            <span class="address-label">Cidade:</span>
-            <span class="address-value">{{addressData.localidade}} - {{addressData.uf}}</span>
-          </div>
-          
-          <div class="address-row">
-            <span class="address-label">CEP:</span>
-            <span class="address-value">{{addressData.cep}}</span>
-          </div>
-        </div>
-      </mat-card-content>
-    </mat-card>
-
-    <!-- Exibição da Previsão do Tempo -->
-    <mat-card class="weather-card">
-      <div class="card-header">
-        <div class="icon-container">
-          <span class="material-icons-outlined">wb_sunny</span>
-        </div>
-        <h2>Clima</h2>
-      </div>
-      
-      <mat-card-content>
-        <!-- Loading -->
-        <div *ngIf="loading" class="loading-container">
-          <mat-spinner diameter="40" color="accent"></mat-spinner>
-          <p>Buscando previsão do tempo...</p>
-        </div>
-        
-        <!-- Erro -->
-        <div *ngIf="errorMessage" class="error-message">
-          <span class="material-icons-outlined">error_outline</span>
-          <p>{{errorMessage}}</p>
-        </div>
-        
-        <!-- Dados Meteorológicos -->
-        <div *ngIf="weatherData && !loading" class="weather-details">
-          <div class="weather-header">
-            <h3>{{weatherData.name}}</h3>
-            <p class="current-date">{{getCurrentDate() | date:'fullDate'}}</p>
-          </div>
-          
-          <div class="weather-main">
-            <div class="weather-icon">
-              <img [src]="getWeatherIconUrl(weatherData.weather[0].icon)" [alt]="weatherData.weather[0].description">
-            </div>
-            <div class="weather-temp">
-              <h2>{{weatherData.main.temp | number:'1.0-0'}}°C</h2>
-              <p>{{weatherData.weather[0].description | titlecase}}</p>
-            </div>
-          </div>
-          
-          <div class="weather-info">
-            <div class="info-card">
-              <div class="info-icon">
-                <span class="material-icons-outlined">thermostat</span>
-              </div>
-              <div class="info-content">
-                <p class="info-label">Sensação térmica</p>
-                <p class="info-value">{{weatherData.main.feels_like | number:'1.0-0'}}°C</p>
-              </div>
-            </div>
-            
-            <div class="info-card">
-              <div class="info-icon">
-                <span class="material-icons-outlined">water_drop</span>
-              </div>
-              <div class="info-content">
-                <p class="info-label">Umidade</p>
-                <p class="info-value">{{weatherData.main.humidity}}%</p>
-              </div>
-            </div>
-            
-            <div class="info-card">
-              <div class="info-icon">
-                <span class="material-icons-outlined">air</span>
-              </div>
-              <div class="info-content">
-                <p class="info-label">Velocidade do vento</p>
-                <p class="info-value">{{weatherData.wind.speed | number:'1.0-1'}} m/s</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </mat-card-content>
-    </mat-card>
-  </div>
-  
-  <!-- Estado inicial - Sem busca -->
-  <div *ngIf="!addressData" class="empty-state">
-    <div class="empty-icon">
-      <span class="material-icons-outlined">search</span>
+<div class="weather-display-container" *ngIf="addressData">
+  <!-- Exibição da Previsão do Tempo -->
+  <mat-card class="weather-card">
+    <div class="card-header">
+      <h2>Previsão do Tempo</h2>
     </div>
-    <h3>Nenhum endereço encontrado</h3>
-    <p>Digite um CEP para visualizar os dados</p>
-  </div>
+    
+    <mat-card-content>
+      <!-- Loading -->
+      <div *ngIf="loading" class="loading-container">
+        <mat-spinner diameter="40" color="accent"></mat-spinner>
+        <p>Buscando previsão do tempo...</p>
+      </div>
+      
+      <!-- Erro -->
+      <div *ngIf="errorMessage" class="error-message">
+        <span class="material-icons-outlined">error_outline</span>
+        <p>{{errorMessage}}</p>
+      </div>
+      
+      <!-- Dados Meteorológicos -->
+      <div *ngIf="weatherData && !loading" class="weather-content">
+        <h3>Hoje</h3>
+        <div class="main-weather-container">
+          <img src="assets/images/placeholder-tempo-hoje.png" alt="Clima atual" class="main-weather-img">
+          <div class="weather-info-overlay">
+            <div class="weather-temp">
+              <h2>{{weatherData.main.temp | number:'1.0-0'}}°</h2>
+              <div class="main-weather-icon">
+                <img [src]="getMainWeatherIcon()" alt="Clima atual">
+              </div>
+            </div>
+            <div class="location-info">
+              <p>{{weatherData.name}}, {{weatherData.sys.country || 'BR'}}</p>
+              <p class="weather-type">{{getWeatherDescription(weatherData)}}</p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="forecast-container">
+          <div class="day-labels">
+            <div class="day-label" *ngFor="let day of forecastDays; let i = index">
+              <p>{{formatDate(day.date)}}</p>
+            </div>
+          </div>
+          <div class="forecast-days">
+            <div class="forecast-day" *ngFor="let day of forecastDays; let i = index" [style.background-image]="'url(assets/images/placeholder-tempo-diario.png)'">
+              <div class="forecast-top">
+                <p class="forecast-temp">{{day.temp}}°</p>
+                <div class="forecast-icon" [ngClass]="{'sunny': i === 1}">
+                  <img [src]="getWeatherImage(i)" [alt]="'Previsão dia ' + (i+1)">
+                </div>
+              </div>
+              <p class="forecast-city">{{weatherData.name}}, {{weatherData.sys.country}}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </mat-card-content>
+  </mat-card>
 </div>
