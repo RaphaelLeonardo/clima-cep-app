@@ -6,10 +6,8 @@
     
     <mat-card-content>
       <form [formGroup]="cepForm" (ngSubmit)="onSubmit()">
-        <div class="form-row">
-          <div class="label-container">
-            <label>CEP:</label>
-          </div>
+        <div class="cep-field">
+          <label>CEP:</label>
           <mat-form-field appearance="outline" class="cep-input">
             <input 
               matInput 
@@ -27,39 +25,22 @@
         </div>
         
         <div *ngIf="addressData" class="address-details">
-          <div class="form-row">
-            <div class="label-container">
-              <label>Endereço:</label>
+          <div class="address-columns">
+            <div class="address-column">
+              <div class="field-group">
+                <label>Endereço:</label><span>{{addressData.logradouro}}</span>
+              </div>
+              <div class="field-group">
+                <label>Bairro:</label><span>{{addressData.bairro}}</span>
+              </div>
             </div>
-            <div class="value-container">
-              <span>{{addressData.logradouro}}</span>
-            </div>
-          </div>
-          
-          <div class="form-row">
-            <div class="label-container">
-              <label>Bairro:</label>
-            </div>
-            <div class="value-container">
-              <span>{{addressData.bairro}}</span>
-            </div>
-          </div>
-          
-          <div class="form-row">
-            <div class="label-container">
-              <label>Cidade:</label>
-            </div>
-            <div class="value-container">
-              <span>{{addressData.localidade}}</span>
-            </div>
-          </div>
-          
-          <div class="form-row">
-            <div class="label-container">
-              <label>Estado:</label>
-            </div>
-            <div class="value-container">
-              <span>{{addressData.uf}}</span>
+            <div class="address-column">
+              <div class="field-group">
+                <label>Cidade:</label><span>{{addressData.localidade}}</span>
+              </div>
+              <div class="field-group">
+                <label>Estado:</label><span>{{addressData.uf}}</span>
+              </div>
             </div>
           </div>
         </div>

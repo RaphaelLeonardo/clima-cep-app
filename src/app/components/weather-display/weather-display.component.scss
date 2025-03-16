@@ -5,7 +5,7 @@
 
 .weather-card {
   width: 100%;
-  background-color: var(--card-background);
+  background-color: var(--blue-bg);
   padding: 0;
   overflow: hidden;
   border-radius: 12px;
@@ -17,10 +17,15 @@
   padding: 15px 20px;
   
   h2 {
+    width: auto;
+    height: 30px;
+    font-family: 'Roboto';
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 120%;
+    letter-spacing: 0%;
+    color: #024D5A;
     margin: 0;
-    font-size: 1.2rem;
-    font-weight: 600;
-    color: var(--secondary-color);
   }
 }
 
@@ -33,10 +38,13 @@ mat-card-content {
   padding: 10px 0;
   
   h3 {
-    font-size: 1.1rem;
-    font-weight: 600;
+    font-family: 'Roboto';
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 120%;
+    letter-spacing: 0%;
+    color: #024D5A;
     margin: 0 0 20px;
-    color: var(--text-primary);
   }
 }
 
@@ -122,13 +130,16 @@ mat-card-content {
   margin-bottom: 5px;
   
   .day-label {
-    text-align: center;
+    text-align: start;
     
     p {
       margin: 0;
-      font-size: 0.8rem;
-      font-weight: 500;
-      color: var(--text-primary);
+      font-family: 'Roboto';
+      font-weight: 700;
+      font-size: 20px;
+      line-height: 120%;
+      letter-spacing: 0%;
+      color: #024D5A;
     }
   }
 }
