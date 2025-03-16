@@ -1,27 +1,54 @@
-# ClimaCepApp
+# Clima CEP App
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.2.1.
+Aplicativo Angular que exibe informações meteorológicas a partir de um CEP.
 
-## Development server
+## Sobre o projeto
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+O Clima CEP App permite ao usuário:
+- Consultar informações de endereço através do CEP
+- Visualizar as condições meteorológicas atuais do local
+- Conferir uma previsão do tempo para os próximos dias
 
-## Code scaffolding
+## Tecnologias utilizadas
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+- Angular 18.2.1
+- TypeScript
+- HTML/SCSS
+- API ViaCEP (busca de endereços por CEP)
+- API OpenWeatherMap (informações meteorológicas)
 
-## Build
+> **Nota**: É necessário ter uma API key do OpenWeatherMap. A chave deve ser configurada no arquivo `src/environments/environment.ts`.
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+## Como executar
 
-## Running unit tests
+1. Clone o repositório
+2. Instale as dependências:
+   ```
+   npm install
+   ```
+3. Execute o servidor de desenvolvimento:
+   ```
+   ng serve
+   ```
+4. Acesse o aplicativo em: http://localhost:4200/
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## Como usar
 
-## Running end-to-end tests
+1. Digite um CEP válido no formato 99999-999
+2. Os dados do endereço e as condições meteorológicas serão exibidos automaticamente
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+## Build para produção
 
-## Further help
+Execute o comando abaixo para gerar os arquivos de produção:
+```
+ng build
+```
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+Os arquivos serão gerados na pasta `dist/`.
+
+## Testes unitários
+
+Para executar os testes unitários via Karma:
+```
+ng test
+```
